@@ -138,7 +138,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITextFi
                         originalImage: imageView.image!,
                         memedImage: memedImage)
         print(meme.description)
-        print("Meme was saved")
     }
     
     private func generateMemedImage() -> UIImage {

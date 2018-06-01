@@ -21,11 +21,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITextFi
     @IBOutlet weak var bottomToolbar: UIToolbar!
     @IBOutlet weak var topNavigationBar: UINavigationBar!
     
-//    let memeTextAttributes:[String: Any] = [
-//        NSAttributedStringKey.strokeColor.rawValue: UIColor.red /* TODO: fill in appropriate UIColor */,
-//        NSAttributedStringKey.foregroundColor.rawValue: UIColor.black/* TODO: fill in appropriate UIColor */,
-//        NSAttributedStringKey.font.rawValue: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-//        NSAttributedStringKey.strokeWidth.rawValue: 1.5/* TODO: fill in appropriate Float */]
+    let memeTextAttributes:[String: Any] = [
+        NSAttributedStringKey.strokeColor.rawValue: UIColor.black /* TODO: fill in appropriate UIColor */,
+        NSAttributedStringKey.foregroundColor.rawValue: UIColor.white/* TODO: fill in appropriate UIColor */,
+        NSAttributedStringKey.font.rawValue: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        NSAttributedStringKey.strokeWidth.rawValue: 3.5/* TODO: fill in appropriate Float */]
     
     private let defaultTopText = "TOP"
     private let defaultBottomText = "BOTTOM"
@@ -75,9 +75,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITextFi
     
     private func configureTextFields(textField: UITextField, content: String) -> Void {
         textField.text = content
-//        textField.textAlignment = NSTextAlignment.center
         textField.delegate = self
-//        textField.defaultTextAttributes = memeTextAttributes
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = NSTextAlignment.center
     }
     
     private func clearTextField(textField: UITextField) -> Void {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UINavigationControllerDelegate, UITextFieldDelegate {
+class CreateMemeViewController: UIViewController, UINavigationControllerDelegate, UITextFieldDelegate {
 
     //outlets
     @IBOutlet weak var cancelButton: UIBarButtonItem!
@@ -25,7 +25,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITextFi
         NSAttributedStringKey.strokeColor.rawValue: UIColor.black /* TODO: fill in appropriate UIColor */,
         NSAttributedStringKey.foregroundColor.rawValue: UIColor.white/* TODO: fill in appropriate UIColor */,
         NSAttributedStringKey.font.rawValue: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-        NSAttributedStringKey.strokeWidth.rawValue: 3.5/* TODO: fill in appropriate Float */]
+        NSAttributedStringKey.strokeWidth.rawValue: -3.5/* TODO: fill in appropriate Float */]
     
     private let defaultTopText = "TOP"
     private let defaultBottomText = "BOTTOM"
@@ -56,11 +56,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITextFi
     }
     
     private func presentAnImageWithSourceType(sourceType: UIImagePickerControllerSourceType) {
-        if UIImagePickerController.isSourceTypeAvailable(sourceType) {
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate=self
-            present(imagePicker, animated: true, completion: nil)
-        }
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate=self
+        present(imagePicker, animated: true, completion: nil)
     }
     
     private func setupDefaults() -> Void {
@@ -94,7 +92,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITextFi
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
     @objc func keyboardWillShow_(_ notification:Notification) {
-        view.frame.origin.y -= getKeyboardHeight(notification)
+        if (bottomText.isEditing) {
+            view.frame.origin.y -= getKeyboardHeight(notification)
+        }
     }
     
     @objc func keyboardWillHide_(_ notification:Notification) {
@@ -160,7 +160,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITextFi
     }
 }
 
-extension ViewController: UIImagePickerControllerDelegate {
+extension CreateMemeViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         imageView.image = image
